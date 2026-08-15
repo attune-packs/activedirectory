@@ -1,0 +1,23 @@
+ref: activedirectory.principal_group_memberships
+label: "List Principal Group Memberships"
+description: "List bounded direct memberships for one stable principal identity without recursive expansion"
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: activedirectory_action.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+default_execution_permission_set_refs: [standard]
+parameters:
+  credential_key: {type: string, default: activedirectory.credentials, required: true, description: "Pack-owned Attune Key reference"}
+  object_id: {type: string, description: "Stable object GUID or distinguished name", required: true}
+  max_results: {type: integer, minimum: 1, maximum: 500, default: 100}
+  timeout_seconds: {type: integer, minimum: 5, maximum: 900, default: 120}
+output:
+  operation: {type: string}
+  target_host: {type: string}
+  target_domain: {type: string}
+  data: {type: any}
+  meta: {type: object}
+tags: [active-directory, principal, read]

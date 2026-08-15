@@ -1,0 +1,25 @@
+ref: activedirectory.ou_search
+label: "Search Organizational Units"
+description: "Search organizational units inside an allowed base; raw LDAP filters are not accepted"
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: activedirectory_action.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+default_execution_permission_set_refs: [standard]
+parameters:
+  credential_key: {type: string, default: activedirectory.credentials, required: true, description: "Pack-owned Attune Key reference"}
+  search_base: {type: string, description: "Distinguished name allowed by the credential profile"}
+  search_scope: {type: string, enum: [Base, OneLevel, Subtree], default: Subtree}
+  name_prefix: {type: string}
+  max_results: {type: integer, minimum: 1, maximum: 500, default: 100}
+  timeout_seconds: {type: integer, minimum: 5, maximum: 900, default: 120}
+output:
+  operation: {type: string}
+  target_host: {type: string}
+  target_domain: {type: string}
+  data: {type: any}
+  meta: {type: object}
+tags: [active-directory, ou, read]

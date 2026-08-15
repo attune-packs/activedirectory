@@ -1,0 +1,21 @@
+Microsoft Active Directory Attune Pack
+Copyright 2026 Attune
+
+This product includes requirements and attribution derived from the
+StackStorm Exchange Active Directory integration pack, version 1.0.1,
+revision 2bdf09685f3d80e514eb5b586b344d41b35f063c, originally authored by
+Encore Technologies and contributed to by StackStorm Exchange contributors.
+
+Upstream source:
+https://github.com/StackStorm-Exchange/stackstorm-activedirectory
+
+The upstream work and this modified work are licensed under the Apache
+License, Version 2.0. The complete license is included in LICENSE.
+
+This modified work replaces generated generic cmdlet wrappers and unsafe
+string-built PowerShell with a curated Attune action surface, structured
+parameter validation, a constant reviewed PowerShell program, verified HTTPS,
+bounded execution, scoped stable identities, confirmations, and redaction.
+
+Microsoft, Windows Server, Active Directory, and PowerShell are trademarks of
+the Microsoft group of companies. No endorsement is implied.

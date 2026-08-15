@@ -1,0 +1,33 @@
+ref: activedirectory.user_create
+label: "Create User"
+description: "Create User using only modeled structured parameters"
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: activedirectory_action.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+default_execution_permission_set_refs: [standard]
+parameters:
+  credential_key: {type: string, default: activedirectory.credentials, required: true, description: "Pack-owned Attune Key reference"}
+  expected_host: {type: string, required: true, description: "Must exactly match the credential profile host"}
+  path_dn: {type: string, description: "Allowed destination container or OU distinguished name", required: true}
+  name: {type: string, required: true}
+  sam_account_name: {type: string, required: true}
+  user_principal_name: {type: string}
+  display_name: {type: string}
+  given_name: {type: string}
+  surname: {type: string}
+  description: {type: string}
+  email: {type: string}
+  enabled: {type: boolean}
+  initial_password: {type: string, secret: true, description: "Protected input; never returned"}
+  timeout_seconds: {type: integer, minimum: 5, maximum: 900, default: 120}
+output:
+  operation: {type: string}
+  target_host: {type: string}
+  target_domain: {type: string}
+  data: {type: any}
+  meta: {type: object}
+tags: [active-directory, user, write]
